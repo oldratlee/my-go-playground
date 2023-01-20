@@ -1,5 +1,7 @@
 package internal
 
+import "fmt"
+
 func checkNilAndEmptySlice() {
 	boxMessage("checkNilSlice")
 
@@ -10,7 +12,7 @@ func checkNilAndEmptySlice() {
 	var nilSlice []int
 	// append elements to nil slice, OK!
 	s1 := append(nilSlice, 42, 43)
-	println("append to nil slice is OK, slice is", s1)
+	fmt.Printf("append to nil slice is OK, slice is %+v\n", s1)
 	if nilSlice == nil {
 		println("nilSlice is nil")
 	}
@@ -27,7 +29,7 @@ func checkNilAndEmptySlice() {
 	//
 	// and it's a WARNING in `GoLang`.
 	s2 := append(emptySlice, 420, 430)
-	println("append to empty slice is OK, slice is", s2)
+	fmt.Printf("append to empty slice is OK, slice is %+v\n", s2)
 
 	if emptySlice == nil {
 		println("empty slice EQUALS nil")
@@ -46,7 +48,7 @@ func checkNilAndEmptyMap() {
 	var emptyMap = map[int]int{}
 	// write elements to empty map, OK!
 	emptyMap[1] = 42
-	println("write to empty map is OK, map is", emptyMap)
+	fmt.Printf("write to empty map is OK, map is %+v\n", emptyMap)
 
 	////////////////////////////////////////////
 	// nil map
@@ -56,5 +58,5 @@ func checkNilAndEmptyMap() {
 	// write elements to empty map, PANIC!
 	nilMap[1] = 420
 	// below line code never run!
-	println("write to nil map, PANIC, map is", nilMap)
+	fmt.Printf("write to nil map, PANIC, map is %+v\n", nilMap)
 }
