@@ -2,7 +2,7 @@ package internal
 
 import "testing"
 
-func Test_nilShowcase(t *testing.T) {
+func Test_nilOrEmptyShowcase(t *testing.T) {
 	/*
 		defer func() {
 			msg := recover()
@@ -10,7 +10,7 @@ func Test_nilShowcase(t *testing.T) {
 		}()
 	*/
 
-	checkNilAndEmptySlice()
+	checkNilOrEmptySlice()
 
-	checkNilAndEmptyMap()
+	checkNilOrEmptyMap()
 }
