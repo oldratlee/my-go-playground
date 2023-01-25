@@ -20,6 +20,8 @@ func checkNilOrEmptySlice() {
 	// return a new slice with appended elements
 	s1 := append(nilSlice, 42, 43)
 	fmt.Printf("append to nil slice is OK, return result is %+v\n", s1)
+	// assign nil to a slice is OK
+	s1 = nil
 
 	////////////////////////////////////////////
 	// empty slice
@@ -62,6 +64,12 @@ func checkNilOrEmptyMap() {
 
 	var emptyMap = map[int]int{}
 	fmt.Printf("len of emptyMap(%+v) is %v\n", emptyMap, len(emptyMap))
+	// empty map NOT equals nil
+	if emptyMap == nil {
+		println("empty map EQUALS nil")
+	} else {
+		println("empty map NOT equals nil")
+	}
 
 	// write elements to empty map, OK and success!
 	emptyMap[1] = 42
@@ -77,8 +85,10 @@ func checkNilOrEmptyMap() {
 		println("nilMap is nil")
 	}
 	fmt.Printf("len of nilMap(%+v) is %v\n", nilMap, len(nilMap))
+	// assign nil to a map is OK
+	nilMap = nil
 
-	// write elements to empty map, PANIC!
+	// write elements to nil map, PANIC!
 	nilMap[1] = 420
 	// below line code never run!
 	fmt.Printf("write to nil map, PANIC, map becomes %+v\n", nilMap)
