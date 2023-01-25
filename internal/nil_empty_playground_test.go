@@ -16,3 +16,7 @@ func Test_checkNilOrEmptyMap(t *testing.T) {
 
 	checkNilOrEmptyMap()
 }
+
+func Test_checkNilLambda(t *testing.T) {
+	checkNilLambda()
+}

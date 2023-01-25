@@ -1,6 +1,8 @@
 package internal
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func checkNilOrEmptySlice() {
 	boxMessage("checkNilOrEmptySlice")
@@ -92,4 +94,16 @@ func checkNilOrEmptyMap() {
 	nilMap[1] = 420
 	// below line code never run!
 	fmt.Printf("write to nil map, PANIC, map becomes %+v\n", nilMap)
+}
+
+func checkNilLambda() {
+	var f1 func()
+
+	// default value of function/lambda is nil
+	if f1 == nil {
+		println("default value of function/lambda is nil")
+	}
+
+	// call nil function/lambda, PANIC!
+	f1()
 }
