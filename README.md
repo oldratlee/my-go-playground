@@ -11,8 +11,9 @@ go test ./...
 
 ## 🛝 Playground List
 
-- [`nil_playground.go`](internal/nil_playground.go) | [`nil_playground_test.go`](internal/nil_playground_test.go)
-  - check the behavior of `nil` slice/map
+- [`nil_empty_playground.go`](internal/nil_empty_playground.go) | [`nil_empty_playground_test.go`](internal/nil_empty_playground_test.go)
+  - check the behavior of `nil`/empty slice
+  - check the behavior of `nil`/empty map
 - [`string_playground.go`](internal/string_playground.go) | [`string_playground_test.go`](internal/string_playground_test.go)
   - check the difference between `len` and `rune count` of string
   - conversion of
