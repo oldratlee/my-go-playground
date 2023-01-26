@@ -30,7 +30,7 @@ go test ./...
       make mistakes very easily, need caution!
     - iterate with byte index only of string by `for-range` loop, lose bytes! NONSENSE!!
   - check memory struct of string by `SizeOf`
-- [`empty_struct_channel_playground.go`](internal/empty_struct_channel_playground.go) | [`empty_struct_channel_playground_test.go`](internal/empty_struct_channel_playground_test.go)
+- [`goroutine_channel_playground.go`](internal/goroutine_channel_playground.go) | [`goroutine_channel_playground_test.go`](internal/goroutine_channel_playground_test.go)
   - read channel by `for-range` loop, very convenient
   - read channel by `comma-ok` pattern, more tedious but safe too
 
