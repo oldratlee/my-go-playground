@@ -1,3 +1,3 @@
-module my-playground
+module github.com/oldratlee/my-go-playground
 
-go 1.19
+go 1.18
