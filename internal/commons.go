@@ -2,7 +2,7 @@ package internal
 
 import "fmt"
 
-// voidT is a value type and only contains one instance.
+// voidT is a value type and contains only one unique instance.
 //
 // Maybe use word `unit` or `singleton` is more precise,
 // but `void` is more common and good enough.

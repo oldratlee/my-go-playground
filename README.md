@@ -33,6 +33,9 @@ go test ./...
 - [`goroutine_channel_playground.go`](internal/goroutine_channel_playground.go) | [`goroutine_channel_playground_test.go`](internal/goroutine_channel_playground_test.go)
   - read channel by `for-range` loop, very convenient
   - read channel by `comma-ok` pattern, more tedious but safe too
+- [`goroutine_channel_pattern_playground.go`](internal/goroutine_channel_pattern_playground.go) | [`goroutine_channel_pattern_playground_test.go`](internal/goroutine_channel_pattern_playground_test.go)
+  - operation(read/write) to multiply channels with `select statement` avoid starvation/deadlock
+  - `done channel pattern` aka. a channel only used to publish close event
 
 ## 😈 My common functions and go design experiments
 
