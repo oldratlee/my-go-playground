@@ -37,6 +37,7 @@ go test ./...
   - operation(read/write) to multiply channels with `select statement` avoid starvation/deadlock
   - `done channel pattern` aka. a channel only used to publish close event
   - `cancel function pattern` to terminate a goroutine
+  - `nilify the case channel pattern` to turning off a case in a select
 
 ## 😈 My common functions and go design experiments
 

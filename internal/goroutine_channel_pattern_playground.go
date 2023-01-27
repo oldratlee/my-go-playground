@@ -143,6 +143,56 @@ func cancelFunctionPatternToTerminateAGoroutine() {
 	time.Sleep(10 * time.Millisecond)
 }
 
+// code from "CHAPTER 10 Concurrency in Go"
+// of "Learning Go: An Idiomatic Approach to Real-World Go Programming"
+func nilifyTheCaseChannelPatternToTurningOffACaseInASelect() {
+	boxMessage("nilifyTheCaseChannelPatternToTurningOffACaseInASelect")
+
+	// prepare the input channel
+	const dataCount = 3
+	in1 := make(chan int, dataCount)
+	in2 := make(chan int, dataCount)
+	// fill mock data
+	for i := 0; i < dataCount; i++ {
+		in1 <- i + 100
+		in2 <- i + 200
+	}
+	close(in1)
+	close(in2)
+
+	// prepare the done channel
+	done := make(chan voidT)
+	go func() {
+		time.Sleep(5 * time.Millisecond)
+		close(done)
+	}()
+
+	// main for-select loop
+	for {
+		select {
+		case v, ok := <-in1:
+			if !ok {
+				in1 = nil // the case will never succeed again!
+				println("NILIFY the closed channel in1")
+				continue
+			}
+			// process the v that was read from in1
+			println("read from in1:", v)
+		case v, ok := <-in2:
+			if !ok {
+				in2 = nil // the case will never succeed again!
+				println("NILIFY the closed channel in2")
+				continue
+			}
+			// process the v that was read from in2
+			println("read from in2:", v)
+		case <-done:
+			println("CANCELLED, stop main for-select loop")
+			return
+		}
+	}
+}
+
 // _randomSleep: sleep about 10ms(5ms ~ 10ms)
 func _randomSleep() {
 	d := 5 + rand.Int63n(5)

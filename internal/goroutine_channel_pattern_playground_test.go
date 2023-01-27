@@ -13,3 +13,7 @@ func Test_doneChannelPattern(t *testing.T) {
 func Test_cancelFunctionPatternToTerminateAGoroutine(t *testing.T) {
 	cancelFunctionPatternToTerminateAGoroutine()
 }
+
+func Test_nilifyTheCaseChannelPatternToTurningOffACaseInASelect(t *testing.T) {
+	nilifyTheCaseChannelPatternToTurningOffACaseInASelect()
+}
