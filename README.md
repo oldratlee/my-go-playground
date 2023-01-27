@@ -36,6 +36,7 @@ go test ./...
 - [`goroutine_channel_pattern_playground.go`](internal/goroutine_channel_pattern_playground.go) | [`goroutine_channel_pattern_playground_test.go`](internal/goroutine_channel_pattern_playground_test.go)
   - operation(read/write) to multiply channels with `select statement` avoid starvation/deadlock
   - `done channel pattern` aka. a channel only used to publish close event
+  - `cancel function pattern` to terminate a goroutine
 
 ## 😈 My common functions and go design experiments
 

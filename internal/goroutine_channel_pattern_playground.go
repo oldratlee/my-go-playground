@@ -49,12 +49,6 @@ func operateMultiplyChannelWithSelectStatementAvoidStarvation() {
 	time.Sleep(5 * time.Millisecond)
 }
 
-func _randomSleep() {
-	// sleep about 10ms(5ms ~ 10ms)
-	d := 5 + rand.Int63n(5)
-	time.Sleep(time.Duration(d) * time.Millisecond)
-}
-
 func _search(s string) []string {
 	_randomSleep()
 
@@ -101,6 +95,58 @@ func doneChannelPatternAkaAChannelOnlyUsedToPublishCloseEvent() {
 
 	// sleep to check whether all searcher goroutine exited
 	time.Sleep(10 * time.Millisecond)
+}
+
+func _countTo(max int) (<-chan int, func()) {
+	ch := make(chan int)
+	done := make(chan voidT)
+	cancel := func() {
+		close(done)
+	}
+
+	// start a goroutine to fill the int sequence channel
+	go func() {
+		for i := 0; i < max; i++ {
+			select {
+			case <-done:
+				println("goroutine of _countTo is CANCELED")
+				return
+			case ch <- i:
+				println("goroutine of _countTo produce", i)
+			}
+		}
+		close(ch)
+		println("goroutine of _countTo is CLOSED")
+	}()
+
+	return ch, cancel
+}
+
+// code from "CHAPTER 10 Concurrency in Go"
+// of "Learning Go: An Idiomatic Approach to Real-World Go Programming"
+func cancelFunctionPatternToTerminateAGoroutine() {
+	boxMessage("cancelFunctionPatternToTerminateAGoroutine")
+
+	ch, cancel := _countTo(4)
+	defer cancel()
+
+	for i := range ch {
+		println("main read ", i)
+
+		r := 2 + rand.Intn(2) // random value of 2 or 3
+		if i >= r {
+			break
+		}
+	}
+
+	// sleep to check whether all searcher goroutine exited
+	time.Sleep(10 * time.Millisecond)
+}
+
+// _randomSleep: sleep about 10ms(5ms ~ 10ms)
+func _randomSleep() {
+	d := 5 + rand.Int63n(5)
+	time.Sleep(time.Duration(d) * time.Millisecond)
 }
 
 func init() {
