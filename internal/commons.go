@@ -13,5 +13,5 @@ var void = voidT{} // = struct{}{}
 
 func boxMessage(msg string) {
 	bar := "=================================================="
-	fmt.Printf("%v\n%v\n%v\n", bar, msg, bar)
+	fmt.Printf("%v\n%v\n%[1]v\n", bar, msg)
 }
