@@ -38,6 +38,7 @@ go test ./...
   - `done channel pattern` aka. a channel only used to publish close event
   - `cancel function pattern` to terminate a goroutine
   - `nilify the case channel pattern` to turning off a case in a select
+  - `time after case pattern` to time out code
 
 ## 😈 My common functions and go design experiments
 

@@ -17,3 +17,7 @@ func Test_cancelFunctionPatternToTerminateAGoroutine(t *testing.T) {
 func Test_nilifyTheCaseChannelPatternToTurningOffACaseInASelect(t *testing.T) {
 	nilifyTheCaseChannelPatternToTurningOffACaseInASelect()
 }
+
+func Test_timeAfterCasePatternToTimeOutCode(t *testing.T) {
+	timeAfterCasePatternToTimeOutCode()
+}

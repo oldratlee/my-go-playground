@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"time"
@@ -191,6 +192,52 @@ func nilifyTheCaseChannelPatternToTurningOffACaseInASelect() {
 			return
 		}
 	}
+}
+
+func _doSomeWork() (int, error) {
+	_randomSleep()
+
+	if rand.Intn(2) > 0 {
+		println("[_doSomeWork] do some work error")
+		return 0, errors.New("do some work error")
+	} else {
+		println("[_doSomeWork] do some work success")
+		return 42, nil
+	}
+}
+
+func _timeLimit() (int, error) {
+	var result int
+	var err error
+	done := make(chan voidT)
+
+	// start a sub-goroutine to do some work
+	go func() {
+		result, err = _doSomeWork()
+		close(done)
+	}()
+
+	// time limit for work
+	select {
+	case <-done:
+		fmt.Printf("[_timeLimit] work finished: %d, %#v\n", result, err)
+		return result, err
+	case <-time.After(7500 * time.Microsecond):
+		println("[_timeLimit] work timed out")
+		return 0, errors.New("work timed out")
+	}
+}
+
+// code from "CHAPTER 10 Concurrency in Go"
+// of "Learning Go: An Idiomatic Approach to Real-World Go Programming"
+func timeAfterCasePatternToTimeOutCode() {
+	boxMessage("timeAfterCasePatternToTimeOutCode")
+
+	result, err := _timeLimit()
+	fmt.Printf("[main] work return with time limit: %d, %#v\n", result, err)
+
+	// sleep to check whether all sub-goroutine exited
+	time.Sleep(10 * time.Millisecond)
 }
 
 // _randomSleep: sleep about 10ms(5ms ~ 10ms)
