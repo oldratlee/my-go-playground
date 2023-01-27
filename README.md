@@ -39,6 +39,16 @@ go test ./...
   - `cancel function pattern` to terminate a goroutine
   - `nilify the case channel pattern` to turning off a case in a select
   - `time after case pattern` to time out code
+- [`when_go_runtime_panic_playground.go`](internal/when_go_runtime_panic_playground.go) | [`when_go_runtime_panic_playground_test.go`](internal/when_go_runtime_panic_playground_test.go)
+  - `array operation` panic
+  - `slice operation` panic
+  - `channel operation` panic
+  - `function value operation`, call nil function value panic
+  - call `value receiver method` with nil point receiver panic
+  - call `method of nil interface` panic
+  - call `method of interface with nil value` panic
+  - `pointer operation`, dereference a nil pointer panic
+  - `type assertions` panic
 
 ## 😈 My common functions and go design experiments
 
