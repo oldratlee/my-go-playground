@@ -15,6 +15,7 @@ func operateMultiplyChannelWithSelectStatementAvoidStarvation() {
 	ch1 := make(chan int)
 	ch2 := make(chan int)
 
+	// start a sub-goroutine
 	go func() {
 		v1 := <-ch1
 		fmt.Printf("read %v from channel 1 in sub-goroutine\n", v1)
@@ -140,7 +141,7 @@ func cancelFunctionPatternToTerminateAGoroutine() {
 		}
 	}
 
-	// sleep to check whether all searcher goroutine exited
+	// sleep to check whether sub-goroutine exited
 	time.Sleep(10 * time.Millisecond)
 }
 
@@ -163,10 +164,9 @@ func nilifyTheCaseChannelPatternToTurningOffACaseInASelect() {
 
 	// prepare the done channel
 	done := make(chan voidT)
-	go func() {
-		time.Sleep(5 * time.Millisecond)
+	time.AfterFunc(5*time.Millisecond, func() {
 		close(done)
-	}()
+	})
 
 	// main for-select loop
 	for {

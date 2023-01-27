@@ -1,6 +1,6 @@
 # 🦫 my Go playground
 
-My Go playground while learning Go. 👩‍🚒  
+My Go playground while learning Go. 🧑‍🚒  
 so be cautious that the codes is not sophisticated and may not follow the best practice.
 
 Run playground simply by `go test`: 🚀
