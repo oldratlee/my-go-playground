@@ -73,6 +73,9 @@ func checkNilOrEmptyMap() {
 		println("empty map NOT equals nil")
 	}
 
+	// read elements from empty map, OK
+	println("read from empty map:", emptyMap[42])
+
 	// write elements to empty map, OK and success!
 	emptyMap[1] = 42
 	fmt.Printf("write to empty map is OK, map becomes %+v\n", emptyMap)
@@ -89,6 +92,9 @@ func checkNilOrEmptyMap() {
 	fmt.Printf("len of nilMap(%+v) is %v\n", nilMap, len(nilMap))
 	// assign nil to a map is OK
 	nilMap = nil
+
+	// read elements from nil map, OK
+	println("read from nil map:", nilMap[42])
 
 	// write elements to nil map, PANIC!
 	nilMap[1] = 420
